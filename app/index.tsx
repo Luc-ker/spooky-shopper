@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, Button, FlatList, Text, View, ScrollView, TextInput, StyleSheet} from 'react-native';
+import {ActivityIndicator, Button, FlatList, Text, View, ScrollView, TextInput, StyleSheet, Pressable} from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 type Food = {
   id: string;
@@ -13,7 +14,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     height: 40,
-    marginBottom: 5
+    marginBottom: 5,
+    minWidth: 300
   },
   sectionHeader: {
     paddingTop: 2,
@@ -27,6 +29,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-between',
+  },
+  listItem: {
+    backgroundColor: 'black',
+    paddingLeft: 10,
+    paddingTop: 12,
+    paddingBottom: 12,
+    marginBottom: 3,
+    textAlign: 'center',
+    borderRadius: 4,
+  },
+  listItemText: {
+    color: 'white',
+  },
+  scrollView: {
+    paddingLeft: 3,
+    paddingRight: 3,
+    paddingTop: 3,
+    paddingBottom: 3,
+    minWidth: 300,
+    maxHeight: 200
   }
 })
 
@@ -55,23 +77,21 @@ const App = () => {
       <View style={{flex: 1,
           padding: 24, 
           justifyContent: "center",
-          alignItems: "center"}}>
+          alignItems: "center"
+          }}>
         <TextInput style={styles.input} placeholder='Enter item'/>
         {isLoading ? (
           <ActivityIndicator />
         ) : (
-          <ScrollView style={{borderColor: "red",
-            borderWidth: 1,
-            maxWidth: 200,
-            maxHeight: 200
-          }}>
-          <FlatList
-            data={data}
-            keyExtractor={({id}) => id}
-            renderItem={({item}) => (              
-                <Button title={ `${item.name}, £${item.price}` } color={"grey"}></Button>
-            )}
-          />
+          <ScrollView style={styles.scrollView}>
+          {
+            data.map((item, index) => (
+              <TouchableOpacity style={styles.listItem} key={index}>
+                <Text style={styles.listItemText}>{`${item.name}, £${item.price ?? 0}`} </Text>
+              </TouchableOpacity>
+            ))
+          }
+
           </ScrollView>
         )}
       </View>
