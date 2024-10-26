@@ -22,3 +22,7 @@ def ItemLocation():
     else:
         results_df = items_df[items_df["item"].isin(result)]
         return jsonify(results_df[["item","price","aisle","column","row"]])
+    
+
+if __name__ == '__main__':
+    app.run(debug=True, port=8001)
