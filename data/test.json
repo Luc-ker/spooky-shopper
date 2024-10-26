@@ -5,12 +5,14 @@
       {
         "id": "1",
         "name": "Ham",
-        "aisle": "1977"
+        "aisle": "1977",
+        "price": "3.44"
       },
       {
         "id": "2",
         "name": "Back to the Future",
-        "aisle": "1985"
+        "aisle": "1985",
+        "price": "4.55"
       },
       {
         "id": "3",
@@ -26,6 +28,24 @@
         "id": "5",
         "name": "Interstellar",
         "aisle": "2014"
+      },
+      {
+        "id": "6",
+        "name": "Butter",
+        "aisle": "1985",
+        "price": "4.55"
+      },
+      {
+        "id": "7",
+        "name": "Milk",
+        "aisle": "1985",
+        "price": "4.55"
+      },
+      {
+        "id": "8",
+        "name": "Milk",
+        "aisle": "1985",
+        "price": "4.55"
       }
     ]
   }
