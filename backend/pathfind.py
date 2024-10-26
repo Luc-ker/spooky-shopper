@@ -25,7 +25,7 @@ def pythagCalc(coord1, coord2):
         distance = min([aisleLength-coord1[1], coord1[1]])
         if distance == coord1 and distance == (aisleLength-coord1[1]):
             distance += min([aisleLength-coord2[1], coord2[1]])
-        elif distance == coord1:
+        elif distance == coord1[1]:
             distance += coord2[1]
         else:
             distance += aisleLength-coord2[1]
