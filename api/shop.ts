@@ -8,7 +8,7 @@ export async function getRecipes() {
         return {}
     }
 }
-
+;
 export async function getItemsFromQuery(storeId: number, query: string) {
     try {
         let fetchResult = await fetch(`${apiUrl}`, {
@@ -22,9 +22,7 @@ export async function getItemsFromQuery(storeId: number, query: string) {
             })
         })
 
-        console.log(fetchResult.status)
         if (fetchResult.status != 200) {
-            console.log("bad status")
             return []
         }
 
@@ -32,7 +30,6 @@ export async function getItemsFromQuery(storeId: number, query: string) {
         
         return fetchResult
     } catch(err) {
-        console.log(err)
         return []
     }
 }

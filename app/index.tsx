@@ -1,14 +1,14 @@
 import { getItemsFromQuery } from '@/api/shop';
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, Button, FlatList, Text, View, ScrollView, TextInput, StyleSheet, Pressable} from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {ActivityIndicator, Button, FlatList, Text, View, ScrollView, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
 
 type Food = {
   id: string;
   item: string;
   aisle: string;
   price: number;
-  row: number
+  row: number;
+  column: number;
 };
 
 const styles = StyleSheet.create({
@@ -59,10 +59,9 @@ const App = () => {
   const [data, setData] = useState<Food[]>([]);
   const [text, setText] = useState('');
 
-  const getItems = async () => {
+  const getItems = async (query: string) => {
     try {
-      const result = await getItemsFromQuery(1, text);
-      console.log(result)
+      const result = await getItemsFromQuery(1, query);
       setData(result);
     } catch (error) {
       console.error(error);
@@ -73,12 +72,11 @@ const App = () => {
 
   const setTextProxy = async (text: string) => {
     setText(text)
-    await getItems()
+    await getItems(text)
   }
   
-
   useEffect(() => {
-    getItems();
+    getItems("");
   }, []);
 
   return (
@@ -96,7 +94,7 @@ const App = () => {
           {
             data.map((item, index) => (
               <TouchableOpacity style={styles.listItem} key={index}>
-                <Text style={styles.listItemText}>{`${item.item}, £${item.price ?? 0}`} </Text>
+                <Text style={styles.listItemText}>{`${item.item}, £${item.price.toFixed(2) ?? (0).toFixed(2)}`} </Text>
               </TouchableOpacity>
             ))
           }
