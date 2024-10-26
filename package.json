@@ -10,7 +10,8 @@
     "web": "expo start --web",
     "test": "jest --watchAll",
     "lint": "expo lint",
-    "backend": "python3 ./backend/main.py"
+    "backend": "python3 ./backend/main.py",
+    "setup": "npm install &&  pip3 install -r ./backend/requirements.txt"
   },
   "jest": {
     "preset": "jest-expo"

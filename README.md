@@ -1,4 +1,10 @@
 ## How To Run The Application
+Install dependencies
+
+```bash
+npm run setup
+```
+
 To run the mobile app
 ```bash
 npm run start
