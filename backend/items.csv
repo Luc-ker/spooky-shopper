@@ -1,0 +1,302 @@
+
+
+id,category,item,price,aisle,row,column
+1,Food,Banana,0.30,1,1,2
+2,Food,Orange,0.40,1,1,3
+3,Food,Grapes,2.00,1,1,4
+4,Food,Bread,1.20,1,1,5
+5,Food,Milk,0.90,1,1,6
+6,Food,Cereal,2.50,1,1,7
+7,Food,Cheese,2.99,1,1,8
+8,Food,Chicken,5.00,1,1,9
+9,Food,Beef,7.50,1,1,10
+10,Food,Pork,6.00,1,1,11
+11,Food,Vegetables,1.50,1,2,1
+12,Food,Potatoes,1.00,1,2,2
+13,Food,Rice,1.80,1,2,3
+14,Food,Pasta,0.85,1,2,4
+15,Food,Sugar,1.50,1,2,5
+16,Food,Flour,1.20,1,2,6
+17,Food,Salt,0.70,1,2,7
+18,Food,Spices,2.50,1,2,8
+19,Food,Eggs,2.30,1,2,9
+20,Food,Butter,1.75,1,2,10
+21,Beverages,Water,0.50,2,1,1
+22,Beverages,Soda,1.00,2,1,2
+23,Beverages,Coffee,3.00,2,1,3
+24,Beverages,Tea,2.50,2,1,4
+25,Beverages,Juice,2.00,2,1,5
+26,Beverages,Energy Drink,2.99,2,1,6
+27,Beverages,Sports Drink,1.75,2,1,7
+28,Beverages,Beer,4.50,2,1,8
+29,Beverages,Wine,8.00,2,1,9
+30,Beverages,Whiskey,15.00,2,1,10
+31,Snacks,Chips,1.50,3,1,1
+32,Snacks,Cookies,2.00,3,1,2
+33,Snacks,Chocolate,1.20,3,1,3
+34,Snacks,Nuts,3.50,3,1,4
+35,Snacks,Popcorn,1.00,3,1,5
+36,Snacks,Trail Mix,2.99,3,1,6
+37,Snacks,Dried Fruit,4.50,3,1,7
+38,Snacks,Gummy Bears,1.50,3,1,8
+39,Snacks,Granola Bars,3.00,3,1,9
+40,Snacks,Beef Jerky,5.00,3,1,10
+41,Dairy,Yogurt,0.90,4,1,1
+42,Dairy,Ice Cream,3.50,4,1,2
+43,Dairy,Milk Alternative,2.50,4,1,3
+44,Dairy,Cream Cheese,2.00,4,1,4
+45,Dairy,Cottage Cheese,1.50,4,1,5
+46,Dairy,Whipped Cream,1.25,4,1,6
+47,Dairy,Parmesan Cheese,5.00,4,1,7
+48,Dairy,Swiss Cheese,4.00,4,1,8
+49,Dairy,Gouda Cheese,4.50,4,1,9
+50,Dairy,Cheddar Cheese,3.50,4,1,10
+51,Health&Wellness,Vitamins,9.99,5,1,1
+52,Health&Wellness,Pain Reliever,5.50,5,1,2
+53,Health&Wellness,Cold Medicine,4.00,5,1,3
+54,Health&Wellness,Allergy Relief,6.50,5,1,4
+55,Health&Wellness,First Aid Kit,12.99,5,1,5
+56,Health&Wellness,Thermometer,3.50,5,1,6
+57,Health&Wellness,Hydration Tablets,2.50,5,1,7
+58,Health&Wellness,Protein Bars,2.25,5,1,8
+59,Health&Wellness,Sunscreen,6.00,5,1,9
+60,Health&Wellness,Hand Sanitizer,1.50,5,1,10
+61,Household,Cleaner,3.99,6,1,1
+62,Household,Laundry Detergent,6.50,6,1,2
+63,Household,Dish Soap,2.50,6,1,3
+64,Household,Paper Towels,3.00,6,1,4
+65,Household,Toilet Paper,4.00,6,1,5
+66,Household,Sponge,1.00,6,1,6
+67,Household,Trash Bags,4.99,6,1,7
+68,Household,Candles,2.00,6,1,8
+69,Household,Light Bulbs,1.75,6,1,9
+70,Household,Air Freshener,2.25,6,1,10
+71,PersonalCare,Shampoo,4.00,7,1,1
+72,PersonalCare,Conditioner,4.00,7,1,2
+73,PersonalCare,Body Wash,3.50,7,1,3
+74,PersonalCare,Toothbrush,1.00,7,1,4
+75,PersonalCare,Toothpaste,2.00,7,1,5
+76,PersonalCare,Deodorant,2.50,7,1,6
+77,PersonalCare,Face Wash,3.00,7,1,7
+78,PersonalCare,Moisturizer,5.00,7,1,8
+79,PersonalCare,Hair Gel,3.50,7,1,9
+80,PersonalCare,Nail Polish,4.00,7,1,10
+81,Produce,Carrots,0.60,8,1,1
+82,Produce,Lettuce,1.00,8,1,2
+83,Produce,Tomatoes,0.80,8,1,3
+84,Produce,Onions,0.50,8,1,4
+85,Produce,Cucumber,0.90,8,1,5
+86,Produce,Broccoli,1.20,8,1,6
+87,Produce,Spinach,1.50,8,1,7
+88,Produce,Celery,1.00,8,1,8
+89,Produce,Zucchini,1.00,8,1,9
+90,Produce,Cabbage,1.25,8,1,10
+91,Frozen,Frozen Pizza,5.00,9,1,1
+92,Frozen,Frozen Vegetables,2.00,9,1,2
+93,Frozen,Frozen Fruits,3.00,9,1,3
+94,Frozen,Frozen Dinners,4.50,9,1,4
+95,Frozen,Frozen Waffles,2.50,9,1,5
+96,Frozen,Frozen Yogurt,3.00,9,1,6
+97,Frozen,Frozen Burritos,1.99,9,1,7
+98,Frozen,Frozen Fish,8.00,9,1,8
+99,Frozen,Frozen Chicken Nuggets,3.50,9,1,9
+100,Frozen,Frozen Breakfast Sandwiches,2.75,9,1,10
+101,Grains,Oats,1.50,10,1,1
+102,Grains,Quinoa,4.00,10,1,2
+103,Grains,Brown Rice,1.80,10,1,3
+104,Grains,Barley,2.25,10,1,4
+105,Grains,Couscous,2.99,10,1,5
+106,Grains,Polenta,3.00,10,1,6
+107,Grains,Bulgur,2.50,10,1,7
+108,Grains,Farro,4.50,10,1,8
+109,Grains,Wild Rice,5.00,10,1,9
+110,Grains,Rolled Oats,1.20,10,1,10
+111,Baking,Baking Soda,0.80,11,1,1
+112,Baking,Baking Powder,1.00,11,1,2
+113,Baking,Cocoa Powder,2.50,11,1,3
+114,Baking,Yeast,1.50,11,1,4
+115,Baking,Chocolate Chips,2.99,11,1,5
+116,Baking,Vanilla Extract,4.50,11,1,6
+117,Baking,Flaxseed,3.00,11,1,7
+118,Baking,Powdered Sugar,2.25,11,1,8
+119,Baking,Brown Sugar,1.75,11,1,9
+120,Baking,Granulated Sugar,1.00,11,1,10
+121,CannedGoods,Canned Tomatoes,0.90,12,1,1
+122,CannedGoods,Canned Beans,1.50,12,1,2
+123,CannedGoods,Canned Soup,1.00,12,1,3
+124,CannedGoods,Canned Tuna,1.75,12,1,4
+125,CannedGoods,Canned Fruit,2.00,12,1,5
+126,CannedGoods,Canned Vegetables,1.25,12,1,6
+127,CannedGoods,Canned Chili,2.50,12,1,7
+128,CannedGoods,Canned Coconut Milk,1.99,12,1,8
+129,CannedGoods,Canned Corn,1.00,12,1,9
+130,CannedGoods,Canned Salmon,3.50,12,1,10
+131,Breakfast,Pancake Mix,3.00,13,1,1
+132,Breakfast,Syrup,2.50,13,1,2
+133,Breakfast,Granola,4.00,13,1,3
+134,Breakfast,Instant Oatmeal,2.00,13,1,4
+135,Breakfast,Breakfast Bars,3.50,13,1,5
+136,Breakfast,Breakfast Sausages,5.00,13,1,6
+137,Breakfast,French Toast,2.75,13,1,7
+138,Breakfast,Muffins,3.25,13,1,8
+139,Breakfast,Bagels,2.50,13,1,9
+140,Breakfast,English Muffins,2.00,13,1,10
+141,Condiments,Ketchup,1.00,14,1,1
+142,Condiments,Mustard,0.80,14,1,2
+143,Condiments,Mayonnaise,2.00,14,1,3
+144,Condiments,Hot Sauce,1.50,14,1,4
+145,Condiments,Soy Sauce,2.25,14,1,5
+146,Condiments,Barbecue Sauce,3.00,14,1,6
+147,Condiments,Relish,1.20,14,1,7
+148,Condiments,Tartar Sauce,1.50,14,1,8
+149,Condiments,Salad Dressing,2.50,14,1,9
+150,Condiments,Olive Oil,5.00,14,1,10
+151,Spices,Black Pepper,1.50,15,1,1
+152,Spices,Red Pepper Flakes,1.00,15,1,2
+153,Spices,Cinnamon,1.20,15,1,3
+154,Spices,Cumin,2.00,15,1,4
+155,Spices,Chili Powder,1.50,15,1,5
+156,Spices,Oregano,1.75,15,1,6
+157,Spices,Basil,1.50,15,1,7
+158,Spices,Thyme,2.00,15,1,8
+159,Spices,Garlic Powder,1.25,15,1,9
+160,Spices,Onion Powder,1.50,15,1,10
+161,Breakfast,Cereal,2.50,16,1,1
+162,Breakfast,Granola Bars,3.00,16,1,2
+163,Breakfast,Instant Oatmeal,1.50,16,1,3
+164,Breakfast,Pancake Syrup,2.25,16,1,4
+165,Breakfast,Breakfast Sausages,4.00,16,1,5
+166,Breakfast,French Toast,3.50,16,1,6
+167,Breakfast,Muffins,2.50,16,1,7
+168,Breakfast,Bagels,2.00,16,1,8
+169,Breakfast,English Muffins,2.50,16,1,9
+170,Breakfast,Croissants,2.00,16,1,10
+171,Condiments,Ketchup,1.00,17,1,1
+172,Condiments,Mustard,0.75,17,1,2
+173,Condiments,Mayonnaise,2.00,17,1,3
+174,Condiments,Hot Sauce,1.50,17,1,4
+175,Condiments,Soy Sauce,1.99,17,1,5
+176,Condiments,Barbecue Sauce,3.00,17,1,6
+177,Condiments,Relish,1.50,17,1,7
+178,Condiments,Tartar Sauce,1.50,17,1,8
+179,Condiments,Salad Dressing,2.50,17,1,9
+180,Condiments,Olive Oil,4.50,17,1,10
+181,Snacks,Potato Chips,1.50,18,1,1
+182,Snacks,Cookies,2.00,18,1,2
+183,Snacks,Nuts,3.00,18,1,3
+184,Snacks,Chocolate Bars,1.00,18,1,4
+185,Snacks,Popcorn,1.25,18,1,5
+186,Snacks,Dried Fruit,4.00,18,1,6
+187,Snacks,Granola Bars,3.00,18,1,7
+188,Snacks,Trail Mix,2.50,18,1,8
+189,Snacks,Beef Jerky,5.00,18,1,9
+190,Snacks,Energy Bars,2.99,18,1,10
+191,CannedGoods,Canned Beans,1.50,19,1,1
+192,CannedGoods,Canned Soup,1.25,19,1,2
+193,CannedGoods,Canned Vegetables,1.00,19,1,3
+194,CannedGoods,Canned Tomatoes,1.50,19,1,4
+195,CannedGoods,Canned Fruit,2.00,19,1,5
+196,CannedGoods,Canned Chili,2.50,19,1,6
+197,CannedGoods,Canned Corn,1.25,19,1,7
+198,CannedGoods,Canned Tuna,2.00,19,1,8
+199,CannedGoods,Canned Salmon,3.00,19,1,9
+200,CannedGoods,Canned Coconut Milk,1.99,19,1,10
+201,BabyCare,Baby Wipes,2.99,20,1,1
+202,BabyCare,Baby Lotion,3.50,20,1,2
+203,BabyCare,Baby Shampoo,4.00,20,1,3
+204,BabyCare,Baby Formula,15.00,20,1,4
+205,BabyCare,Baby Food,1.50,20,1,5
+206,BabyCare,Baby Powder,2.00,20,1,6
+207,BabyCare,Baby Bath,3.00,20,1,7
+208,BabyCare,Baby Nail Clippers,5.00,20,1,8
+209,BabyCare,Baby Monitor,50.00,20,1,9
+210,BabyCare,Baby Carrier,20.00,20,1,10
+211,PetSupplies,Dog Food,15.00,21,1,1
+212,PetSupplies,Cat Food,12.00,21,1,2
+213,PetSupplies,Dogs Treats,5.00,21,1,3
+214,PetSupplies,Cats Treats,4.00,21,1,4
+215,PetSupplies,Dog Leash,10.00,21,1,5
+216,PetSupplies,Cat Litter,7.50,21,1,6
+217,PetSupplies,Pet Shampoo,4.50,21,1,7
+218,PetSupplies,Pet Bed,20.00,21,1,8
+219,PetSupplies,Pet Carrier,25.00,21,1,9
+220,PetSupplies,Pet Bowl,3.50,21,1,10
+221,Beverages,Coffee,4.99,22,1,1
+222,Beverages,Tea,2.50,22,1,2
+223,Beverages,Sparkling Water,1.50,22,1,3
+224,Beverages,Juice,1.99,22,1,4
+225,Beverages,Soda,1.20,22,1,5
+226,Beverages,Energy Drink,2.50,22,1,6
+227,Beverages,Beer,3.00,22,1,7
+228,Beverages,Wine,6.00,22,1,8
+229,Beverages,Whiskey,15.00,22,1,9
+230,Beverages,Cocktail Mix,3.00,22,1,10
+231,Household,Detergent,4.99,23,1,1
+232,Household,Cleaning Wipes,3.00,23,1,2
+233,Household,Dish Soap,1.50,23,1,3
+234,Household,Paper Towels,2.99,23,1,4
+235,Household,Toilet Paper,5.00,23,1,5
+236,Household,Trash Bags,2.50,23,1,6
+237,Household,Candles,1.75,23,1,7
+238,Household,Light Bulbs,2.00,23,1,8
+239,Household,Air Freshener,2.50,23,1,9
+240,Household,Plungers,3.50,23,1,10
+241,PersonalCare,Shampoo,4.00,24,1,1
+242,PersonalCare,Conditioner,3.50,24,1,2
+243,PersonalCare,Body Wash,4.00,24,1,3
+244,PersonalCare,Toothpaste,1.50,24,1,4
+245,PersonalCare,Deodorant,2.00,24,1,5
+246,PersonalCare,Face Wash,2.99,24,1,6
+247,PersonalCare,Moisturizer,3.50,24,1,7
+248,PersonalCare,Sunscreen,6.00,24,1,8
+249,PersonalCare,Hand Soap,1.50,24,1,9
+250,PersonalCare,Hand Lotion,2.50,24,1,10
+251,Frozen,Frozen Pizza,4.00,25,1,1
+252,Frozen,Frozen Vegetables,2.50,25,1,2
+253,Frozen,Frozen Fruits,3.00,25,1,3
+254,Frozen,Frozen Dinners,5.00,25,1,4
+255,Frozen,Frozen Desserts,3.50,25,1,5
+256,Frozen,Frozen Fish,8.00,25,1,6
+257,Frozen,Frozen Chicken Nuggets,4.50,25,1,7
+258,Frozen,Frozen Breakfast Sandwiches,2.50,25,1,8
+259,Frozen,Frozen Burritos,3.00,25,1,9
+260,Frozen,Frozen Waffles,2.50,25,1,10
+261,Baking,Baking Soda,1.00,26,1,1
+262,Baking,Baking Powder,1.20,26,1,2
+263,Baking,Flour,1.50,26,1,3
+264,Baking,Sugar,1.00,26,1,4
+265,Baking,Chocolate Chips,2.50,26,1,5
+266,Baking,Cocoa Powder,2.99,26,1,6
+267,Baking,Vanilla Extract,3.50,26,1,7
+268,Baking,Yeast,1.50,26,1,8
+269,Baking,Powdered Sugar,2.00,26,1,9
+270,Baking,Brown Sugar,1.80,26,1,10
+271,Snacks,Chips,1.50,27,1,1
+272,Snacks,Candy Bars,1.00,27,1,2
+273,Snacks,Nuts,3.50,27,1,3
+274,Snacks,Popcorn,2.00,27,1,4
+275,Snacks,Trail Mix,3.00,27,1,5
+276,Snacks,Granola Bars,2.50,27,1,6
+277,Snacks,Beef Jerky,5.00,27,1,7
+278,Snacks,Dried Fruit,4.00,27,1,8
+279,Snacks,Chocolate,1.50,27,1,9
+280,Snacks,Snack Mix,3.00,27,1,10
+281,Household,Cleaner,3.99,28,1,1
+282,Household,Laundry Detergent,5.50,28,1,2
+283,Household,Dish Soap,2.50,28,1,3
+284,Household,Paper Towels,3.00,28,1,4
+285,Household,Toilet Paper,4.00,28,1,5
+286,Household,Sponge,1.00,28,1,6
+287,Household,Trash Bags,4.99,28,1,7
+288,Household,Candles,2.00,28,1,8
+289,Household,Light Bulbs,1.75,28,1,9
+290,Household,Air Freshener,2.25,28,1,10
+291,PersonalCare,Shampoo,4.00,29,1,1
+292,PersonalCare,Conditioner,4.00,29,1,2
+293,PersonalCare,Body Wash,3.50,29,1,3
+294,PersonalCare,Toothbrush,1.00,29,1,4
+295,PersonalCare,Toothpaste,2.00,29,1,5
+296,PersonalCare,Deodorant,2.50,29,1,6
+297,PersonalCare,Face Wash,3.00,29,1,7
+298,PersonalCare,Moisturizer,5.00,29,1,8
+299,PersonalCare,Nail Polish,4.00,29,1,9
