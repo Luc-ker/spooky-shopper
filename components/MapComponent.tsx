@@ -29,7 +29,7 @@ export default function MapComponent() {
         offset.value = withRepeat(
             withTiming(1, { duration: 3000, easing: Easing.linear }),
             -1,
-            true
+            false
         );
     }, [])
      

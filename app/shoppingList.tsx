@@ -1,4 +1,4 @@
-import { getItemsFromQuery } from '@/api/shop';
+import MapComponent from '@/components/MapComponent';
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, Button, FlatList, Text, View, ScrollView, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
 
@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   listItem: {
-    backgroundColor: 'black',
     paddingLeft: 10,
     paddingTop: 12,
     paddingBottom: 12,
@@ -51,6 +50,12 @@ const styles = StyleSheet.create({
     paddingBottom: 3,
     minWidth: 300,
     maxHeight: 200
+  },
+  header: {
+    color: 'black',
+    fontSize: 30,
+    fontWeight: "bold",
+    marginBottom: 30
   }
 })
 
@@ -59,26 +64,6 @@ const App = () => {
   const [data, setData] = useState<Food[]>([]);
   const [text, setText] = useState('');
 
-  const getItems = async (query: string) => {
-    try {
-      const result = await getItemsFromQuery(1, query);
-      setData(result);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const setTextProxy = async (text: string) => {
-    setText(text)
-    await getItems(text)
-  }
-  
-  useEffect(() => {
-    getItems("");
-  }, []);
-
   return (
     <View style={styles.container}>
       <View style={{flex: 1,
@@ -86,21 +71,8 @@ const App = () => {
           justifyContent: "center",
           alignItems: "center"
           }}>
-        <TextInput style={styles.input} placeholder='Enter item' onChangeText={newText => setTextProxy(newText)} />
-        {isLoading ? (
-          <ActivityIndicator />
-        ) : (
-          <ScrollView style={styles.scrollView}>
-          {
-            data.map((item, index) => (
-              <TouchableOpacity style={styles.listItem} key={index}>
-                <Text style={styles.listItemText}>{`${item.item}, £${item.price.toFixed(2) ?? (0).toFixed(2)}`} </Text>
-              </TouchableOpacity>
-            ))
-          }
-
-          </ScrollView>
-        )}
+        <Text style={styles.header}>Review your basket</Text>
+        <TextInput style={styles.input} placeholder='Enter item' />
       </View>
     </View>
   );
