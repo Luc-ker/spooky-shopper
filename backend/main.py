@@ -20,4 +20,5 @@ def ItemLocation():
     if len(result) == 0:
         return jsonify("Sorry, This item is not availabe in the store")
     else:
-        return jsonify(items_df[["item","price","aisle","column","row"]])
+        results_df = items_df[items_df["item"].isin(result)]
+        return jsonify(results_df[["item","price","aisle","column","row"]])
