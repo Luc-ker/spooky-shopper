@@ -8,23 +8,28 @@ export async function getRecipes() {
         return {}
     }
 }
-
+;
 export async function getItemsFromQuery(storeId: number, query: string) {
     try {
-        const fetchResult = await fetch(`${apiUrl}`, {
+        let fetchResult = await fetch(`${apiUrl}`, {
             method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
                 item: query
             })
-        }).then(response => response.json());
+        })
 
-        if (fetchResult.status != 400) {
+        if (fetchResult.status != 200) {
             return []
         }
+
+        fetchResult = await fetchResult.json();
         
         return fetchResult
     } catch(err) {
-        console.log(err)
         return []
     }
 }
