@@ -15,7 +15,7 @@ export async function getItemsFromQuery(storeId: number, query: string) {
             method: "POST",
             body: JSON.stringify({
                 storeId,
-                query
+                item: query
             })
         })
 
