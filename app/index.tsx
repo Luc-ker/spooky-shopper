@@ -36,11 +36,11 @@ const styles = StyleSheet.create({
     paddingTop: 12,
     paddingBottom: 12,
     marginBottom: 3,
-    textAlign: 'center',
     borderRadius: 4,
   },
   listItemText: {
     color: 'white',
+    textAlign: 'center',
   },
   scrollView: {
     paddingLeft: 3,
