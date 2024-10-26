@@ -1,4 +1,5 @@
 import { getItemsFromQuery } from '@/api/shop';
+import { addItemToShoppingList, getShoppingList } from '@/store/basket';
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, Button, FlatList, Text, View, ScrollView, TextInput, StyleSheet, TouchableOpacity, Pressable} from 'react-native';
 
@@ -106,7 +107,10 @@ export default function({navigation}) {
           <ScrollView style={styles.scrollView}>
           {
             data.map((item, index) => (
-              <TouchableOpacity style={styles.listItem} key={index}>
+              <TouchableOpacity style={styles.listItem} key={index} onPress={async () => {
+                await addItemToShoppingList(item);
+                console.log(await getShoppingList());
+              }}>
                 <Text style={styles.listItemText}>{`${item.item}, £${item.price.toFixed(2) ?? (0).toFixed(2)}`} </Text>
               </TouchableOpacity>
             ))

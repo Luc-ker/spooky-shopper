@@ -24,9 +24,11 @@ export async function getShoppingList() {
 export async function addItemToShoppingList(food: Food) {
     let shoppingList: [Food] = await getShoppingList()
     shoppingList.push(food)
+    await setShoppingList(shoppingList);
 }
 
 export async function removeItemFromShoppingList(index: number) {
     let shoppingList: [Food] = await getShoppingList()
     shoppingList.splice(index, 1)
+    await setShoppingList(shoppingList);
 }
