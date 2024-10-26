@@ -11,20 +11,20 @@ export async function getRecipes() {
 
 export async function getItemsFromQuery(storeId: number, query: string) {
     try {
-        const fetchResult = await fetch(`${apiUrl}/getItemsFromQuery`, {
+        const fetchResult = await fetch(`${apiUrl}`, {
             method: "POST",
             body: JSON.stringify({
-                storeId,
                 item: query
             })
-        })
+        }).then(response => response.json());
 
         if (fetchResult.status != 400) {
             return []
         }
         
-        return fetchResult.json();
-    } catch {
+        return fetchResult
+    } catch(err) {
+        console.log(err)
         return []
     }
 }
