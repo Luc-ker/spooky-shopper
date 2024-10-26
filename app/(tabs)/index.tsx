@@ -11,7 +11,7 @@ export default function Index() {
     >
       <Text>Enter the store code.</Text>
       <TextInput style={{height: 40}} placeholder="Enter Store Code" ></TextInput>
-      <Button title="Press me!"/>
+      <Button title="Enter"/>
       
     </View>
   );
