@@ -25,14 +25,14 @@ def item_location():
         if fuzz.ratio(x,item) > 50:
             result.append(x)
 
-        if len(result) == 0:
-            print("no items")
-            return jsonify({'message': "Sorry, this item is not available in the store"}), 400
-        else:
-            results_df = items_df[items_df["item"].str.lower().isin(result)]
-            print("got items")
-            print(results_df[["item", "price", "aisle", "column", "row"]].to_dict(orient='records'))
-            return jsonify(results_df[["item", "price", "aisle", "column", "row"]].to_dict(orient='records'))
+    if len(result) == 0:
+        print("no items")
+        return jsonify({'message': "Sorry, this item is not available in the store"}), 400
+    else:
+        results_df = items_df[items_df["item"].str.lower().isin(result)]
+        print("got items")
+        print(results_df[["item", "price", "aisle", "column", "row"]].to_dict(orient='records'))
+        return jsonify(results_df[["item", "price", "aisle", "column", "row"]].to_dict(orient='records'))
 
 if __name__ == '__main__':
     app.run(debug=True, port=8001)

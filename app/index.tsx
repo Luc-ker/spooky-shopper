@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, Button, FlatList, Text, View, ScrollView, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
 
 type Food = {
-  id: string;
+  id: number;
   item: string;
   aisle: string;
   price: number;
