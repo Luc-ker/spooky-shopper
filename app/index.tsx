@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, Button, FlatList, Text, View, ScrollView, TextInput, StyleSheet} from 'react-native';
-// import getRecipes from 'shop'; 
 
 type Food = {
   id: string;
@@ -16,6 +15,15 @@ const styles = StyleSheet.create({
     height: 40,
     marginBottom: 5
   },
+  sectionHeader: {
+    paddingTop: 2,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingBottom: 2,
+    fontSize: 14,
+    fontWeight: 'bold',
+    backgroundColor: 'rgba(247,247,247,1.0)',
+  },
   container: {
     flex: 1,
     justifyContent: 'space-between',
@@ -28,7 +36,7 @@ const App = () => {
 
   const getFoods = async () => {
     try {
-      const response = await fetch('data/test.json');
+      const response = await fetch('data/test.json'); // change this later!!!
       const json = await response.json();
       setData(json.food);
     } catch (error) {
@@ -52,18 +60,19 @@ const App = () => {
         {isLoading ? (
           <ActivityIndicator />
         ) : (
+          <ScrollView style={{borderColor: "red",
+            borderWidth: 1,
+            maxWidth: 200,
+            maxHeight: 200
+          }}>
           <FlatList
             data={data}
             keyExtractor={({id}) => id}
-            renderItem={({item}) => (
-              <ScrollView style={{borderColor: "red",
-                borderWidth: 1,
-                maxWidth: 200
-              }}>
+            renderItem={({item}) => (              
                 <Button title={ `${item.name}, £${item.price}` } color={"grey"}></Button>
-              </ScrollView>
             )}
           />
+          </ScrollView>
         )}
       </View>
     </View>
