@@ -1,5 +1,4 @@
-from flask import Flask, flash, redirect, render_template, request, session, g, jsonify
-import sqlite3
+from flask import Flask, request, jsonify
 import pandas as pd
 from fuzzywuzzy import fuzz
 
