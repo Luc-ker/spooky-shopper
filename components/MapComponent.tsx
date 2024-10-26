@@ -1,11 +1,11 @@
 import { Text, View, TextInput, Button } from "react-native";
 import { Canvas, Path, Skia, DashPathEffect } from "@shopify/react-native-skia";
-import Animated, {
+import {
     useSharedValue,
-    useAnimatedStyle,
     withTiming,
     withRepeat,
-  } from 'react-native-reanimated';  
+    Easing
+} from 'react-native-reanimated';  
 import { useEffect } from "react";
 
 export default function MapComponent() {
@@ -27,9 +27,9 @@ export default function MapComponent() {
 
     useEffect(() => {
         offset.value = withRepeat(
-            withTiming(1, { duration: 3000 }),
+            withTiming(1, { duration: 3000, easing: Easing.linear }),
             -1,
-            false
+            true
         );
     }, [])
      
@@ -38,7 +38,7 @@ export default function MapComponent() {
             <Path
                 path={path}
                 style={"stroke"}
-                strokeWidth={3}
+                strokeWidth={8}
                 color="gray"
                 start={offset} // use this to show the direction the path is going in
             >
