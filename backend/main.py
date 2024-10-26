@@ -11,7 +11,7 @@ items_df = pd.read_csv("backend/items.csv")
 def ItemLocation():
     result = []
     item = request.form.get("item")
-    item.lower()
+    item = item.lower()
     all_items = items_df["item"]
     for x in all_items:
         if fuzz.ratio(item, x) > 50:
