@@ -4,7 +4,6 @@ from fuzzywuzzy import fuzz
 
 app = Flask(__name__)
 
-# Load items data from CSV file
 try:
     items_df = pd.read_csv("backend/items.csv")
 except Exception as e:
@@ -12,24 +11,21 @@ except Exception as e:
 
 @app.route('/', methods=["POST"])
 def item_location():
-    # Retrieve the item from the request form
-    item = request.form.get("item")
-    if item is None:
-        return jsonify("Item not provided"), 400  # Return error if no item provided
     
-    item = item.lower()  # Convert the input to lowercase
-    all_items = items_df["item"].str.lower()  # Convert all items to lowercase for comparison
+    item = request.json.get("item")
+    if item is None:
+        return jsonify("Item not provided"), 400 
+    
+    item = item.lower() 
+    all_items = items_df["item"].str.lower() 
     result = []
-
-    # Loop through all items to find matches based on fuzzy matching
     for x in all_items:
-        if fuzz.ratio(item, x) > 50:  # Adjust threshold as needed
+        if x == item: 
             result.append(x)
 
     if len(result) == 0:
-        return jsonify("Sorry, this item is not available in the store"), 404  # Return 404 if no matches found
+        return jsonify("Sorry, this item is not available in the store"), 404 
     else:
-        # Filter the DataFrame for the matched items
         results_df = items_df[items_df["item"].str.lower().isin(result)]
         return jsonify(results_df[["item", "price", "aisle", "column", "row"]].to_dict(orient='records'))
 
