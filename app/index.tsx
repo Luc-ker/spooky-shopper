@@ -5,9 +5,10 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 type Food = {
   id: string;
-  name: string;
+  item: string;
   aisle: string;
   price: number;
+  row: number
 };
 
 const styles = StyleSheet.create({
@@ -61,6 +62,7 @@ const App = () => {
   const getItems = async () => {
     try {
       const result = await getItemsFromQuery(1, text);
+      console.log(result)
       setData(result);
     } catch (error) {
       console.error(error);
@@ -94,7 +96,7 @@ const App = () => {
           {
             data.map((item, index) => (
               <TouchableOpacity style={styles.listItem} key={index}>
-                <Text style={styles.listItemText}>{`${item.name}, £${item.price ?? 0}`} </Text>
+                <Text style={styles.listItemText}>{`${item.item}, £${item.price ?? 0}`} </Text>
               </TouchableOpacity>
             ))
           }

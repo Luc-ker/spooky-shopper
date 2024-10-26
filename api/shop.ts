@@ -11,16 +11,24 @@ export async function getRecipes() {
 
 export async function getItemsFromQuery(storeId: number, query: string) {
     try {
-        const fetchResult = await fetch(`${apiUrl}`, {
+        let fetchResult = await fetch(`${apiUrl}`, {
             method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
                 item: query
             })
-        }).then(response => response.json());
+        })
 
-        if (fetchResult.status != 400) {
+        console.log(fetchResult.status)
+        if (fetchResult.status != 200) {
+            console.log("bad status")
             return []
         }
+
+        fetchResult = await fetchResult.json();
         
         return fetchResult
     } catch(err) {
