@@ -22,7 +22,7 @@ def item_location():
     all_items = items_df["item"].str.lower() 
     result = []
     for x in all_items:
-        if fuzz.ratio(x,item) > 50:
+        if item in x:
             result.append(x)
 
     if len(result) == 0:
