@@ -1,6 +1,13 @@
-# Welcome to your Expo app 👋
+## How To Run The Application
+To run the mobile app
+```bash
+npm run start
+```
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+To run the Python backend
+```bash
+npm run backend
+```
 
 ## Get started
 
