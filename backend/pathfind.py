@@ -1,3 +1,30 @@
+from math import sqrt
+    
+def shortestPythagoras(list, start=(0,0)):
+    print(len(list))
+    if len(list) == 0:
+        return list
+    else:
+        lowest = float("inf")
+        item = None
+        for i in list:
+            distance = pythagCalc((i.aisle, i.column), start)
+            print(distance)
+            if distance < lowest:
+                item = i
+                lowest = distance
+                newStart = (i.aisle, i.column)
+        if item != None:
+            list.remove(item)
+        return [item] + shortestPythagoras(list, newStart)
+
+def pythagCalc(coord1, coord2):
+    print(coord1, coord2)
+    distance = sqrt((coord2[0]-coord1[0])**2 + (coord2[1]-coord1[1])**2)
+    if (coord1[0]==coord2[0]) or (coord1[1]==coord2[1]):
+        distance /= 2
+    return distance
+
 class Item():
     def __init__(self, type, food, aisle, row, column):
         self.type = type
@@ -7,7 +34,7 @@ class Item():
         self.column = column
 
     def printDetails(self):
-        print(self.type, self.food, self.aisle, self.row, self.column)
+        print(self.food, self.aisle, self.column, self.row)
 
 list = [
     ["Food","Flour",1.20,1,2,6],
@@ -23,6 +50,6 @@ list = [
 ]
 
 list = [Item(x[0], x[1], x[3], x[4], x[5]) for x in list]
-list.sort(key=lambda x: (x.aisle, x.column, x.row))
+list = shortestPythagoras(list)
 for item in list:
     item.printDetails()
