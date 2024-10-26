@@ -109,7 +109,6 @@ export default function({navigation}) {
             data.map((item, index) => (
               <TouchableOpacity style={styles.listItem} key={index} onPress={async () => {
                 await addItemToShoppingList(item);
-                console.log(await getShoppingList());
               }}>
                 <Text style={styles.listItemText}>{`${item.item}, £${item.price.toFixed(2) ?? (0).toFixed(2)}`} </Text>
               </TouchableOpacity>
