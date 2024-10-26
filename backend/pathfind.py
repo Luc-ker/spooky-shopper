@@ -1,14 +1,15 @@
 from math import sqrt
-    
+
+aisleLength = 11
+
 def shortestPythagoras(list, start=(0,0)):
-    print(len(list))
     if len(list) == 0:
         return list
     else:
         lowest = float("inf")
         item = None
         for i in list:
-            distance = pythagCalc((i.aisle, i.column), start)
+            distance = pythagCalc(start, (i.aisle, i.column))
             print(distance)
             if distance < lowest:
                 item = i
@@ -20,9 +21,19 @@ def shortestPythagoras(list, start=(0,0)):
 
 def pythagCalc(coord1, coord2):
     print(coord1, coord2)
-    distance = sqrt((coord2[0]-coord1[0])**2 + (coord2[1]-coord1[1])**2)
-    if (coord1[0]==coord2[0]) or (coord1[1]==coord2[1]):
-        distance /= 2
+    if (coord1[0] != coord2[0]):
+        distance = min([aisleLength-coord1[1], coord1[1]])
+        if distance == coord1 and distance == (aisleLength-coord1[1]):
+            distance += min([aisleLength-coord2[1], coord2[1]])
+        elif distance == coord1:
+            distance += coord2[1]
+        else:
+            distance += aisleLength-coord2[1]
+        distance += abs(coord2[0]-coord1[0])
+    elif (coord1[0] == coord2[0]):
+        distance = abs(coord2[1]-coord1[1])
+    else:
+        distance = sqrt((coord2[0]-coord1[0])**2 + (coord2[1]-coord1[1])**2)
     return distance
 
 class Item():
