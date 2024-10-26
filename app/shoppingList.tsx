@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   }
 })
 
-const App = () => {
+const App = ({navigation}) => {
   const [data, setData] = useState<Food[]>([]);
 
   const updateBasket = async () => {
@@ -125,6 +125,15 @@ const App = () => {
           }
           </ScrollView>
         }
+
+        <TouchableOpacity style={{
+          backgroundColor: 'green',
+          paddingHorizontal: 50,
+          paddingVertical: 15,
+          marginTop: 100,
+        }} onPress={() => navigation.push('mapScreen')}>
+          <Text style={{color: 'white', fontWeight: 'bold', fontSize: 20}}>Next</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

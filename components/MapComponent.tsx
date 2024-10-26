@@ -8,21 +8,24 @@ import {
 } from 'react-native-reanimated';  
 import { useEffect } from "react";
 
+
+type Vec2 = {
+    x: number;
+    y: number
+}
+
+function translateMapCoordinatesToScreen(x: number, y: number, imageWidth: number, imageHeight: number, canvasWidth: number, canvasHeight: number): Vec2  {
+    return {x: x/imageWidth * canvasWidth, y: y/imageHeight * canvasHeight}
+}
+
 export default function MapComponent() {
     const offset = useSharedValue(0);
 
     const path = Skia.Path.Make();
-    path.moveTo(128, 0);
-    path.lineTo(168, 80);
-    path.lineTo(256, 93);
-    path.lineTo(192, 155);
-    path.lineTo(207, 244);
-    path.lineTo(128, 202);
-    path.lineTo(49, 244);
-    path.lineTo(64, 155);
-    path.lineTo(0, 93);
-    path.lineTo(88, 80);
-    path.lineTo(128, 0);
+    path.moveTo(0, 0);
+    path.lineTo(400, 0)
+    path.lineTo(400, 400)
+    path.lineTo(0, 400)
     path.close();
 
     useEffect(() => {
@@ -34,11 +37,11 @@ export default function MapComponent() {
     }, [])
      
     return (
-        <Canvas style={{ width: 400, height: 600 }}>
+        <Canvas style={{ width: 400, height: 400 }}>
             <Path
                 path={path}
                 style={"stroke"}
-                strokeWidth={8}
+                strokeWidth={9}
                 color="gray"
                 start={offset} // use this to show the direction the path is going in
             >
