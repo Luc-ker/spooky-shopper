@@ -18,9 +18,13 @@ export async function getItemsFromQuery(storeId: number, query: string) {
                 query
             })
         })
+
+        if (fetchResult.status != 400) {
+            return []
+        }
         
         return fetchResult.json();
     } catch {
-        return null
+        return []
     }
 }

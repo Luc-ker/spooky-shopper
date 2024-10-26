@@ -1,3 +1,4 @@
+import { getItemsFromQuery } from '@/api/shop';
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, Button, FlatList, Text, View, ScrollView, TextInput, StyleSheet, Pressable} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -55,12 +56,12 @@ const styles = StyleSheet.create({
 const App = () => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<Food[]>([]);
+  const [text, setText] = useState('');
 
-  const getFoods = async () => {
+  const getItems = async () => {
     try {
-      const response = await fetch('data/test.json'); // change this later!!!
-      const json = await response.json();
-      setData(json.food);
+      const result = await getItemsFromQuery(1, text);
+      setData(result);
     } catch (error) {
       console.error(error);
     } finally {
@@ -68,8 +69,14 @@ const App = () => {
     }
   };
 
+  const setTextProxy = async (text: string) => {
+    setText(text)
+    await getItems()
+  }
+  
+
   useEffect(() => {
-    getFoods();
+    getItems();
   }, []);
 
   return (
@@ -79,7 +86,7 @@ const App = () => {
           justifyContent: "center",
           alignItems: "center"
           }}>
-        <TextInput style={styles.input} placeholder='Enter item'/>
+        <TextInput style={styles.input} placeholder='Enter item' onChangeText={newText => setTextProxy(newText)} />
         {isLoading ? (
           <ActivityIndicator />
         ) : (
