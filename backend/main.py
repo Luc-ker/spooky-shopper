@@ -100,6 +100,7 @@ try:
 except Exception as e:
     raise Exception("Error reading items.csv: {}".format(e))
 
+# The request handlers
 @app.route('/', methods=["POST"])
 def item_location():
     
@@ -110,7 +111,7 @@ def item_location():
         return jsonify("Item not provided"), 400 
     
     item = item.lower() 
-    all_items = items_df["item"].str.lower() 
+    all_items = items_df["item"].str.lower()
     result = []
     for x in all_items:
         if item in x:
@@ -121,12 +122,19 @@ def item_location():
         return jsonify({'message': "Sorry, this item is not available in the store"}), 400
     else:
         results_df = items_df[items_df["item"].str.lower().isin(result)]
-        print("got items")
-        print(results_df[["item", "price", "aisle", "column", "row"]].to_dict(orient='records'))
+        
         return jsonify(results_df[["item", "price", "aisle", "column", "row"]].to_dict(orient='records'))
 
+
 @app.route('/mapScreen', methods=["POST"])
-def main(list):
+def main():
+
+    shopping_list = request.json.get("shopping_list")
+
+    list_df =  list_df[list_df["id"].isin(shopping_list)]
+
+    item_list = items_df["item"]
+
     pixelSize = 25
     mapArray = []
 
@@ -155,7 +163,7 @@ def main(list):
                     aisle_num = aisle.num*2+y-1
                 mapArray[x+shrinked[0]][shrinked[1]+y] = ShelfCell(aisle_num)
 
-    list = [Item(x[0], x[1], x[3], x[4], x[5], x[6]) for x in list]
+    list = [Item(x[0], x[1], x[3], x[4], x[5], x[6]) for x in item_list]
     itemCells = []
     for item in list:
         aisleCells = []
@@ -167,12 +175,14 @@ def main(list):
                     coords.append((x,y))
         aisleCells[item.column-1] = aisleCells[item.column-1].set_item(item, coords[item.column-1])
         itemCells.append(aisleCells[item.column-1])
-        print(coords[item.column-1])
 
     itemCells = shortestPythagoras(itemCells)
     for cell in itemCells:
         cell.item.printDetails()
-        print(cell.coords)
+
+    # This will return a jason file containing the ordered list
+    results_df = items_df[items_df["item"].isin(itemCells)]
+    return jsonify(results_df[["item","price"]])
 
 
 if __name__ == '__main__':
