@@ -38,7 +38,7 @@ export async function getItemsFromQuery(storeId: number, query: string) {
 
 export async function getPathFromitems(items: [Food]) {
     try {
-        let fetchResult = await fetch(`${apiUrl}`, {
+        let fetchResult = await fetch(`${apiUrl}/mapScreen`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -50,13 +50,15 @@ export async function getPathFromitems(items: [Food]) {
         })
 
         if (fetchResult.status != 200) {
-            return []
+            console.log("bad status")
+            return [{},{}]
         }
 
         fetchResult = await fetchResult.json();
         
         return fetchResult
     } catch(err) {
-        return []
+        console.log("err", err)
+        return [{},{}]
     }
 }
