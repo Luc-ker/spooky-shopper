@@ -5,6 +5,7 @@ import shoppingList from './shoppingList'
 import calculatingScreen from './calculatingScreen'
 import mapScreen from './mapScreen'
 import { NavigationContainer } from '@react-navigation/native';
+import { useFonts } from 'expo-font';
 
 const Stack = createNativeStackNavigator();
 
