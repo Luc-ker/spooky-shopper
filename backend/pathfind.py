@@ -175,7 +175,7 @@ def main(list=list):
         cell.item.printDetails()
         print(cell.coords)
         foods.append(cell.item.food)
-        locations.append((cell.item.aisle, cell.item.column))
+        locations.append((cell.item.aisle*pixelSize, cell.item.column*pixelSize))
     return foods, locations
 
 if __name__ == '__main__':
