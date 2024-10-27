@@ -11,15 +11,36 @@ const styles = StyleSheet.create({
   },
 })
 
+export type FoodPosition = {
+  name: string;
+  x: number,
+  y: number,
+}
+
 const App = () => {
+  const [path, setPath] = useState<[any?]>()
+  const [loaded, setLoaded] = useState<boolean>(false)
+
   const getShopping = async () => {
     let shoppingList = await getShoppingList();
-    console.log(await getPathFromitems(shoppingList))
+    let path = await getPathFromitems(shoppingList);
+
+    let pos: [any?] = []
+    for (const [key, value] of Object.entries(path)) {
+      pos.push([key, value[0], value[1]])
+    }
+
+    setPath(pos);
+
+    setLoaded(true);
   }
 
   useEffect(() => {
     getShopping()
   }, [])
+
+  if(loaded == false)
+    return null;
 
   return (
     <View style={styles.container}>
@@ -28,7 +49,7 @@ const App = () => {
           justifyContent: "center",
           alignItems: "center"
           }}>
-            <MapComponent />
+            <MapComponent points={path} />
       </View>
     </View>
   );

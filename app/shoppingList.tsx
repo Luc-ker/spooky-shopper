@@ -85,14 +85,27 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     fontWeight: 'bold'
+  },
+  priceText: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 25,
+    marginTop: 20
   }
 })
 
 const App = ({navigation}) => {
   const [data, setData] = useState<Food[]>([]);
-
+  const [totalPrice, setTotalPrice] = useState<number>()
   const updateBasket = async () => {
     setData(await getShoppingList())
+
+    let sum = 0;
+    data.forEach((item: Food) => {
+      sum = sum + item.price
+    })
+
+    setTotalPrice(sum)
   }
 
   useEffect(() => {
@@ -123,11 +136,14 @@ const App = ({navigation}) => {
               </View>
             ))
           }
+
           </ScrollView>
         }
+        <Text style={styles.priceText}>{`£${(totalPrice ?? 0).toFixed(2)}`}</Text>
+
 
         <TouchableOpacity style={{
-         marginTop: 100,
+         marginTop: 70,
          backgroundColor: '#fd7801',
          paddingVertical: 15,
          paddingHorizontal: 90,
