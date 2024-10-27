@@ -177,7 +177,8 @@ def main():
     for cell in itemCells:
         cell.item.printDetails()
         foods.append(cell.item.food)
-        locations.append((cell.item.aisle*pixelSize, cell.item.column*pixelSize))
+        locations.append((cell.item.aisle*pixelSize+pixelSize//2, cell.item.column*pixelSize+pixelSize//2))
+    print(locations)
 
     items_dic = dict(zip(foods, locations))
 
