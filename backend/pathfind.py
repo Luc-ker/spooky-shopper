@@ -63,79 +63,7 @@ def findMaxHeight(array):
     maxYstart = max([item.y for item in array])
     maxHeight = max([item.height for item in array if item.y == maxYstart])
     return maxYstart + maxHeight
-    
-def write_array_to_file(array):
-    with open("C:\\Users\\jlee4\\Documents\\shopping-list-sorter\\backend\\map.txt", "a") as f2:
-        for x in array:
-            for cell in x:
-                f2.write(f"{cell.return_self()}")
-            f2.write("|\n")
-
-def print_array(array):
-    for x in array:
-        for cell in x:
-            print(cell.return_self(), end="")
-        print("|")
-
-aisleLength = 11
-pixelSize = 25
-mapArray = []
-
-with open("C:\\Users\\jlee4\\Documents\\shopping-list-sorter\\backend\\coordinates.txt", "r") as f1:
-    aisles = []
-    aisle = 1
-    for line in f1:
-        newline = [int(x) for x in line.split(",")]
-        aisles.append(Aisle(newline[0], newline[1], newline[2], newline[3], aisle))
-        aisle += 1
-    aisles = sorted(aisles, key=lambda item : (item.x, item.y))
-
-x_boxes = (findMaxWidth(aisles)//pixelSize) + 2
-y_boxes = (findMaxHeight(aisles)//pixelSize) + 2
-
-for x in range(x_boxes):
-    mapArray.append([Cell()]*y_boxes) # aisle gets set later
-
-for aisle in aisles:
-    shrinked = [aisle.x//25, aisle.y//25, aisle.length//25, aisle.height//25]
-    for x in range(shrinked[2]):
-        for y in range(shrinked[3]):
-            if shrinked[2] < shrinked[3]:
-                aisle_num = aisle.num*2+x-1
-            else:
-                aisle_num = aisle.num*2+y-1
-            mapArray[x+shrinked[0]][shrinked[1]+y] = ShelfCell(aisle_num)
-
-list = [
-    ["Food","Flour",1.20,1,2,6],
-    ["Dairy","Ice Cream",3.50,4,1,2],
-    ["Food","Banana",0.30,1,1,2],
-    ["Beverages","Water",0.50,2,1,1],
-    ["Food","Grapes",2.00,1,1,4],
-    ["Dairy","Cream Cheese",2.00,4,1,4],
-    ["Dairy","Milk Alternative",2.50,4,1,3],
-    ["Beverages","Soda",1.00,2,1,2],
-    ["Food","Orange",0.40,1,1,3],
-    ["Beverages","Coffee",3.00,2,1,3]
-]
-
-list = [Item(x[0], x[1], x[3], x[4], x[5]) for x in list]
-itemCells = []
-for item in list:
-    aisleCells = []
-    coords = []
-    for x, i in enumerate(mapArray):
-        for y, cell in enumerate(i):
-            if cell.aisle == item.aisle:
-                aisleCells.append(cell)
-                coords.append((x,y))
-    aisleCells[item.column-1] = aisleCells[item.column-1].set_item(item, coords[item.column-1])
-    itemCells.append(aisleCells[item.column-1])
-    print(coords[item.column-1])
-
-
 def pythagCalc(coord1, coord2):
-    # print(coord1, coord2)
     # first number is vertical, second number is horizontal
     if coord1 == (0,0):
         distance = coord2[0] + coord2[1]
@@ -154,12 +82,6 @@ def pythagCalc(coord1, coord2):
         distance = abs(coord2[0]-coord1[0])
     return distance
 
-# write_array_to_file(mapArray)
-# with open("C:\\Users\\jlee4\\Documents\\shopping-list-sorter\\backend\\map.txt", "a") as f2:
-#     for i,x in enumerate(mapArray):
-#         for y,cell in enumerate(x):
-#             f2.write(f"{i}, {y}, {cell.state}, {cell.aisle}\n")
-
 def shortestPythagoras(list, start=(0,0)):
     if len(list) == 0:
         return list
@@ -176,9 +98,80 @@ def shortestPythagoras(list, start=(0,0)):
         if item != None:
             list.remove(item)
         return [item] + shortestPythagoras(list, newStart)
+    
+# def write_array_to_file(array):
+#     with open("C:\\Users\\jlee4\\Documents\\shopping-list-sorter\\backend\\map.txt", "a") as f2:
+#         for x in array:
+#             for cell in x:
+#                 f2.write(f"{cell.return_self()}")
+#             f2.write("|\n")
 
+# def print_array(array):
+#     for x in array:
+#         for cell in x:
+#             print(cell.return_self(), end="")
+#         print("|")
 
-itemCells = shortestPythagoras(itemCells)
-for cell in itemCells:
-    cell.item.printDetails()
-    print(cell.coords)
+def main():
+    list = [
+        ["Food","Flour",1.20,1,2,6],
+        ["Dairy","Ice Cream",3.50,4,1,2],
+        ["Food","Banana",0.30,1,1,2],
+        ["Beverages","Water",0.50,2,1,1],
+        ["Food","Grapes",2.00,1,1,4],
+        ["Dairy","Cream Cheese",2.00,4,1,4],
+        ["Dairy","Milk Alternative",2.50,4,1,3],
+        ["Beverages","Soda",1.00,2,1,2],
+        ["Food","Orange",0.40,1,1,3],
+        ["Beverages","Coffee",3.00,2,1,3]
+    ]
+    aisleLength = 11
+    pixelSize = 25
+    mapArray = []
+
+    with open("C:\\Users\\jlee4\\Documents\\shopping-list-sorter\\backend\\coordinates.txt", "r") as f1:
+        aisles = []
+        aisle = 1
+        for line in f1:
+            newline = [int(x) for x in line.split(",")]
+            aisles.append(Aisle(newline[0], newline[1], newline[2], newline[3], aisle))
+            aisle += 1
+        aisles = sorted(aisles, key=lambda item : (item.x, item.y))
+
+    x_boxes = (findMaxWidth(aisles)//pixelSize) + 2
+    y_boxes = (findMaxHeight(aisles)//pixelSize) + 2
+
+    for x in range(x_boxes):
+        mapArray.append([Cell()]*y_boxes) # aisle gets set later
+
+    for aisle in aisles:
+        shrinked = [aisle.x//25, aisle.y//25, aisle.length//25, aisle.height//25]
+        for x in range(shrinked[2]):
+            for y in range(shrinked[3]):
+                if shrinked[2] < shrinked[3]:
+                    aisle_num = aisle.num*2+x-1
+                else:
+                    aisle_num = aisle.num*2+y-1
+                mapArray[x+shrinked[0]][shrinked[1]+y] = ShelfCell(aisle_num)
+
+    list = [Item(x[0], x[1], x[3], x[4], x[5]) for x in list]
+    itemCells = []
+    for item in list:
+        aisleCells = []
+        coords = []
+        for x, i in enumerate(mapArray):
+            for y, cell in enumerate(i):
+                if cell.aisle == item.aisle:
+                    aisleCells.append(cell)
+                    coords.append((x,y))
+        aisleCells[item.column-1] = aisleCells[item.column-1].set_item(item, coords[item.column-1])
+        itemCells.append(aisleCells[item.column-1])
+        print(coords[item.column-1])
+
+    itemCells = shortestPythagoras(itemCells)
+    for cell in itemCells:
+        cell.item.printDetails()
+        print(cell.coords)
+
+if __name__ == '__main__':
+    main()
