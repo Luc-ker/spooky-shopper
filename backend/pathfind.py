@@ -1,3 +1,4 @@
+from flask import Flask, request, jsonify
 from math import sqrt
 
 class Aisle():
@@ -111,25 +112,28 @@ def shortestPythagoras(list, start=(0,0)):
 #         for cell in x:
 #             print(cell.return_self(), end="")
 #         print("|")
+list = [
+    ["Food","Flour",1.20,1,2,6],
+    ["Dairy","Ice Cream",3.50,4,1,2],
+    ["Food","Banana",0.30,1,1,2],
+    ["Beverages","Water",0.50,2,1,1],
+    ["Food","Grapes",2.00,1,1,4],
+    ["Dairy","Cream Cheese",2.00,4,1,4],
+    ["Dairy","Milk Alternative",2.50,4,1,3],
+    ["Beverages","Soda",1.00,2,1,2],
+    ["Food","Orange",0.40,1,1,3],
+    ["Beverages","Coffee",3.00,2,1,3]
+]
 
-def main():
-    list = [
-        ["Food","Flour",1.20,1,2,6],
-        ["Dairy","Ice Cream",3.50,4,1,2],
-        ["Food","Banana",0.30,1,1,2],
-        ["Beverages","Water",0.50,2,1,1],
-        ["Food","Grapes",2.00,1,1,4],
-        ["Dairy","Cream Cheese",2.00,4,1,4],
-        ["Dairy","Milk Alternative",2.50,4,1,3],
-        ["Beverages","Soda",1.00,2,1,2],
-        ["Food","Orange",0.40,1,1,3],
-        ["Beverages","Coffee",3.00,2,1,3]
-    ]
-    aisleLength = 11
+app = Flask(__name__)
+
+@app.route('/', methods=["POST"])
+def main(list=list):
+    # aisleLength = 11
     pixelSize = 25
     mapArray = []
 
-    with open("C:\\Users\\jlee4\\Documents\\shopping-list-sorter\\backend\\coordinates.txt", "r") as f1:
+    with open("backend/coordinates.txt", "r") as f1:
         aisles = []
         aisle = 1
         for line in f1:
@@ -174,4 +178,5 @@ def main():
         print(cell.coords)
 
 if __name__ == '__main__':
-    main()
+    main(list)
+    app.run(debug=True, port=8001)
