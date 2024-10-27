@@ -9,7 +9,7 @@ const App = ({navigation}) => {
                 <Image style={[styles.image]}
                 source={require("../assets/images/logo.png")} />
                 <View>
-                    <Text style={[styles.header]}>Spooky Shopping</Text>
+                    <Text style={[styles.header]}>Spooky Shopper</Text>
                 </View>
                 <TouchableOpacity style={styles.button}
                 onPress={() => navigation.push('homeScreen')}
