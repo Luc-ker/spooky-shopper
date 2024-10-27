@@ -127,10 +127,14 @@ const App = ({navigation}) => {
         }
 
         <TouchableOpacity style={{
-          backgroundColor: 'green',
-          paddingHorizontal: 50,
-          paddingVertical: 15,
-          marginTop: 100,
+         marginTop: 100,
+         backgroundColor: '#fd7801',
+         paddingVertical: 15,
+         paddingHorizontal: 90,
+         marginBottom: 10,
+         borderRadius: 60,
+         borderWidth: 1,
+         borderColor: '#db7f2c',
         }} onPress={() => navigation.push('mapScreen')}>
           <Text style={{color: 'white', fontWeight: 'bold', fontSize: 20}}>Next</Text>
         </TouchableOpacity>

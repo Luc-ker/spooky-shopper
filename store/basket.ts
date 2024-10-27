@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-type Food = {
+export type Food = {
     id: number;
     item: string;
     aisle: string;

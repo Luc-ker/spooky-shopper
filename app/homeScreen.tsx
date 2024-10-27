@@ -2,6 +2,7 @@ import { getItemsFromQuery } from '@/api/shop';
 import { addItemToShoppingList, getShoppingList } from '@/store/basket';
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, Button, FlatList, Text, View, ScrollView, TextInput, StyleSheet, TouchableOpacity, Pressable} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type Food = {
   id: number;
@@ -57,6 +58,8 @@ const styles = StyleSheet.create({
   listItemText: {
     color: 'black',
     textAlign: 'center',
+    fontSize: 15,
+    fontWeight: '900'
   },
   scrollView: {
     paddingLeft: 3,
@@ -71,6 +74,10 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     marginBottom: 30
+  },
+  priceText: {
+    color: 'green',
+    fontWeight: 'bold',
   }
 })
 
@@ -100,7 +107,7 @@ export default function({navigation}) {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={{flex: 1,
           padding: 24, 
           marginTop: 0,
@@ -118,8 +125,10 @@ export default function({navigation}) {
             data.map((item, index) => (
               <TouchableOpacity style={styles.listItem} key={index} onPress={async () => {
                 await addItemToShoppingList(item);
+                
               }}>
-                <Text style={styles.listItemText}>{`${item.item}, £${item.price.toFixed(2) ?? (0).toFixed(2)}`} </Text>
+                <Text style={styles.listItemText}>{`${item.item}`} </Text>
+                <Text style={styles.priceText}>{`£${item.price.toFixed(2) ?? (0).toFixed(2)}`}</Text>
               </TouchableOpacity>
             ))
           }
@@ -140,6 +149,6 @@ export default function({navigation}) {
           <Text style={{color: 'white', fontWeight: 'bold', fontSize: 20}}>Next</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
