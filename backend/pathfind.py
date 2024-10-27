@@ -1,40 +1,15 @@
 from math import sqrt
 
-aisleLength = 11
+class Aisle():
+    def __init__(self, x, y, length, height, num):
+        self.x = x
+        self.y = y
+        self.length = length
+        self.height = height
+        self.num = num
 
-def shortestPythagoras(list, start=(0,0)):
-    if len(list) == 0:
-        return list
-    else:
-        lowest = float("inf")
-        item = None
-        for i in list:
-            distance = pythagCalc(start, (i.aisle, i.column))
-            print(distance)
-            if distance < lowest:
-                item = i
-                lowest = distance
-                newStart = (i.aisle, i.column)
-        if item != None:
-            list.remove(item)
-        return [item] + shortestPythagoras(list, newStart)
-
-def pythagCalc(coord1, coord2):
-    print(coord1, coord2)
-    if (coord1[0] != coord2[0]):
-        distance = min([aisleLength-coord1[1], coord1[1]])
-        if distance == coord1 and distance == (aisleLength-coord1[1]):
-            distance += min([aisleLength-coord2[1], coord2[1]])
-        elif distance == coord1[1]:
-            distance += coord2[1]
-        else:
-            distance += aisleLength-coord2[1]
-        distance += abs(coord2[0]-coord1[0])
-    elif (coord1[0] == coord2[0]):
-        distance = abs(coord2[1]-coord1[1])
-    else:
-        distance = sqrt((coord2[0]-coord1[0])**2 + (coord2[1]-coord1[1])**2)
-    return distance
+    def printDetails(self):
+        print(self.x, self.y, self.length, self.height, self.num)
 
 class Item():
     def __init__(self, type, food, aisle, row, column):
@@ -46,6 +21,116 @@ class Item():
 
     def printDetails(self):
         print(self.food, self.aisle, self.column, self.row)
+
+class Cell():
+    def __init__(self):
+        self.state = "0"
+        self.aisle = -1
+
+    def set_state(self, state, aisle=-1):
+        self.state = state
+        if aisle != -1:
+            self.aisle = aisle
+    
+    def print_details(self):
+        print(self.state, self.aisle)
+
+    def return_self(self):
+        return f"| {self.state} "
+
+class ShelfCell(Cell):
+    def __init__(self, aisle):
+        super().__init__()
+        self.state = "X"
+        self.aisle = aisle
+        self.has_item = False
+        self.item = None
+        self.coords = (-1,-1)
+        
+    def set_item(self, item, coords):
+        self.state = "O"
+        self.has_item = True
+        self.coords = coords
+        self.item = item
+        return self
+
+def findMaxWidth(array):
+    maxXstart = max([item.x for item in array])
+    maxLength = max([item.length for item in array if item.x == maxXstart])
+    return maxXstart + maxLength
+
+def findMaxHeight(array):
+    maxYstart = max([item.y for item in array])
+    maxHeight = max([item.height for item in array if item.y == maxYstart])
+    return maxYstart + maxHeight
+    
+def write_array_to_file(array):
+    with open("C:\\Users\\jlee4\\Documents\\shopping-list-sorter\\backend\\map.txt", "a") as f2:
+        for x in array:
+            for cell in x:
+                f2.write(f"{cell.return_self()}")
+            f2.write("|\n")
+
+def print_array(array):
+    for x in array:
+        for cell in x:
+            print(cell.return_self(), end="")
+        print("|")
+
+aisleLength = 11
+pixelSize = 25
+mapArray = []
+
+with open("C:\\Users\\jlee4\\Documents\\shopping-list-sorter\\backend\\coordinates.txt", "r") as f1:
+    aisles = []
+    aisle = 1
+    for line in f1:
+        newline = [int(x) for x in line.split(",")]
+        aisles.append(Aisle(newline[0], newline[1], newline[2], newline[3], aisle))
+        aisle += 1
+    aisles = sorted(aisles, key=lambda item : (item.x, item.y))
+
+x_boxes = (findMaxWidth(aisles)//pixelSize) + 2
+y_boxes = (findMaxHeight(aisles)//pixelSize) + 2
+
+for x in range(x_boxes):
+    # mapArray.append(["0"]*y_boxes)
+    mapArray.append([Cell()]*y_boxes) # aisle gets set later
+
+for aisle in aisles:
+    shrinked = [aisle.x//25, aisle.y//25, aisle.length//25, aisle.height//25]
+    # print(shrinked)
+    for x in range(shrinked[2]):
+        for y in range(shrinked[3]):
+            # print(x+shrinked[0], shrinked[1]+y)
+            # mapArray[x+shrinked[0]][shrinked[1]+y] = "X"
+            if shrinked[2] < shrinked[3]:
+                # print(aisle.num*2+x-1)
+                aisle_num = aisle.num*2+x-1
+            else:
+                # print(aisle.num*2+y-1)
+                aisle_num = aisle.num*2+y-1
+            # print(aisle_num-1)
+            mapArray[x+shrinked[0]][shrinked[1]+y] = ShelfCell(aisle_num)
+            # print(mapArray[x+shrinked[0]][shrinked[1]+y].state)
+            # print(mapArray[x+shrinked[0]][shrinked[1]+y].aisle)
+            # cell = mapArray[x+shrinked[0]][shrinked[1]+y]
+# write_array_to_file(mapArray)
+    # with open("C:\\Users\\jlee4\\Documents\\shopping-list-sorter\\backend\\map.txt", "a") as f2:
+    #     f2.write(str(aisle.num))
+    #     for i,x in enumerate(mapArray):
+    #         for y,cell in enumerate(x):
+    #             f2.write(f"| {cell.state} ")
+    #         f2.write(f"|\n")
+    #     for i in range(len(mapArray)-1, 0, -1):
+    #         f2.write(str(mapArray[i])+"\n")
+
+# with open("C:\\Users\\jlee4\\Documents\\shopping-list-sorter\\backend\\map.txt", "a") as f2:
+# for i,x in enumerate(mapArray):
+#     for y,cell in enumerate(x):
+        # f2.write(f"{i}, {y}, {cell.state}, {cell.aisle}\n")
+        # print(f"{i}, {y}, {cell.state}, {cell.aisle}")
+# print(mapArray)
 
 list = [
     ["Food","Flour",1.20,1,2,6],
@@ -61,6 +146,60 @@ list = [
 ]
 
 list = [Item(x[0], x[1], x[3], x[4], x[5]) for x in list]
-list = shortestPythagoras(list)
+itemCells = []
 for item in list:
-    item.printDetails()
+    aisleCells = []
+    coords = []
+    for x, i in enumerate(mapArray):
+        for y, cell in enumerate(i):
+            if cell.aisle == item.aisle:
+                aisleCells.append(cell)
+                coords.append((x,y))
+    aisleCells[item.column-1] = aisleCells[item.column-1].set_item(item, coords[item.column-1])
+    itemCells.append(aisleCells[item.column-1])
+
+def pythagCalc(coord1, coord2):
+    print(coord1, coord2)
+    if coord1 == (0,0):
+        distance = coord2[0] + coord2[1]
+    elif (coord1[1] != coord2[1]):
+        distance = min([aisleLength-coord1[0], coord1[0]])
+        if distance == coord1 and distance == (aisleLength-coord1[0]):
+            distance += min([aisleLength-coord2[0], coord2[0]])
+        elif distance == coord1[0]:
+            distance += coord2[0]
+        else:
+            distance += aisleLength-coord2[0]
+        distance += abs(coord2[1]-coord1[1])
+    elif (coord1[1] == coord2[1]):
+        distance = abs(coord2[0]-coord1[0])
+    return distance
+
+# write_array_to_file(mapArray)
+# with open("C:\\Users\\jlee4\\Documents\\shopping-list-sorter\\backend\\map.txt", "a") as f2:
+#     for i,x in enumerate(mapArray):
+#         for y,cell in enumerate(x):
+#             f2.write(f"{i}, {y}, {cell.state}, {cell.aisle}\n")
+
+def shortestPythagoras(list, start=(0,0)):
+    if len(list) == 0:
+        return list
+    else:
+        lowest = float("inf")
+        item = None
+        for i in list:
+            distance = pythagCalc(start, i.coords)
+            print(distance)
+            if distance < lowest:
+                item = i
+                lowest = distance
+                newStart = i.coords
+        if item != None:
+            list.remove(item)
+        return [item] + shortestPythagoras(list, newStart)
+
+
+itemCells = shortestPythagoras(itemCells)
+for cell in itemCells:
+    cell.item.printDetails()
+    print(cell.coords)
