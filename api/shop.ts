@@ -10,7 +10,7 @@ export async function getRecipes() {
         return {}
     }
 }
-;
+
 export async function getItemsFromQuery(storeId: number, query: string) {
     try {
         let fetchResult = await fetch(`${apiUrl}`, {
