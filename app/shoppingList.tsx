@@ -101,7 +101,7 @@ const App = ({navigation}) => {
     setData(await getShoppingList())
 
     let sum = 0;
-    data.forEach((item: Food) => {
+    (await getShoppingList()).forEach((item: Food) => {
       sum = sum + item.price
     })
 
@@ -110,7 +110,10 @@ const App = ({navigation}) => {
 
   useEffect(() => {
     updateBasket()
-  }, [])
+    setInterval(() => {
+      updateBasket()
+    }, 2000);  
+  }, [navigation])
 
   return (
     <View style={styles.container}>

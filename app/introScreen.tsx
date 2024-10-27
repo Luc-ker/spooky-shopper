@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, View, Image, ScrollView, StyleSheet, TouchableOpacity,} from 'react-native';
     import { useFonts, YatraOne_400Regular } from '@expo-google-fonts/yatra-one'
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Emitter } from 'react-native-particles';
 
 const App = ({navigation}) => {
     let [loaded] = useFonts({
@@ -15,6 +16,18 @@ const App = ({navigation}) => {
     return (
         <SafeAreaView style={styles.scrollView}>
             <View style={[styles.container]}>
+                <Emitter
+                    numberOfParticles={200}
+                    emissionRate={1}
+                    interval={200}
+                    particleLife={5000}
+                    direction={-90}
+                    spread={2900}
+                    fromPosition={{ x: 200, y: 300 }}
+                    speed={30}
+                >
+                    <Text style={{color: 'white', fontWeight: 'bold'}}>SPOOKY</Text>
+                </Emitter>
                 <Image style={[styles.image]}
                 source={require("../assets/images/logo.png")} />
                 <View>
