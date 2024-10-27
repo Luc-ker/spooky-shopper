@@ -14,9 +14,8 @@ class Aisle():
         print(self.x, self.y, self.length, self.height, self.num)
 
 class Item():
-    def __init__(self, id, type, food, aisle, row, column):
-        self.id = id
-        self.type = type
+    def __init__(self, food, aisle, row, column, price):
+        self.price = price
         self.food = food
         self.aisle = aisle
         self.row = row
@@ -131,10 +130,6 @@ def main():
 
     shopping_list = request.json.get("shopping_list")
 
-    list_df =  items_df[items_df["id"].isin(shopping_list)]
-
-    item_list = items_df["item"]
-
     pixelSize = 25
     mapArray = []
 
@@ -163,7 +158,7 @@ def main():
                     aisle_num = aisle.num*2+y-1
                 mapArray[x+shrinked[0]][shrinked[1]+y] = ShelfCell(aisle_num)
 
-    list = [Item(x[0], x[1], x[3], x[4], x[5], x[6]) for x in item_list]
+    list = [Item(x["item"], x["aisle"], x["row"], x["column"], x["price"]) for x in shopping_list]
     itemCells = []
     for item in list:
         aisleCells = []
@@ -177,12 +172,16 @@ def main():
         itemCells.append(aisleCells[item.column-1])
 
     itemCells = shortestPythagoras(itemCells)
+    foods = []
+    locations = []
     for cell in itemCells:
         cell.item.printDetails()
+        foods.append(cell.item.food)
+        locations.append((cell.item.aisle*pixelSize, cell.item.column*pixelSize))
 
-    # This will return a jason file containing the ordered list
-    results_df = items_df[items_df["item"].isin(itemCells)]
-    return jsonify(results_df[["item","price"]])
+    items_dic = dict(zip(foods, locations))
+
+    return jsonify(items_dic)
 
 
 if __name__ == '__main__':
