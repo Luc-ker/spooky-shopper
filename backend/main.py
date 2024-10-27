@@ -131,7 +131,7 @@ def main():
 
     shopping_list = request.json.get("shopping_list")
 
-    list_df =  list_df[list_df["id"].isin(shopping_list)]
+    list_df =  items_df[items_df["id"].isin(shopping_list)]
 
     item_list = items_df["item"]
 
