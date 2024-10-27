@@ -1,4 +1,3 @@
-from flask import Flask, request, jsonify
 from math import sqrt
 
 class Aisle():
@@ -125,9 +124,6 @@ list = [
     ["Beverages","Coffee",3.00,2,1,3]
 ]
 
-app = Flask(__name__)
-
-@app.route('/', methods=["POST"])
 def main(list=list):
     # aisleLength = 11
     pixelSize = 25
@@ -173,10 +169,14 @@ def main(list=list):
         print(coords[item.column-1])
 
     itemCells = shortestPythagoras(itemCells)
+    foods = []
+    locations = []
     for cell in itemCells:
         cell.item.printDetails()
         print(cell.coords)
+        foods.append(cell.item.food)
+        locations.append((cell.item.aisle, cell.item.column))
+    return foods, locations
 
 if __name__ == '__main__':
     main(list)
-    app.run(debug=True, port=8001)
