@@ -31,9 +31,12 @@
       [
         "expo-asset",
         {
-          "assets": ["./assets/images/tempMap.png"]
+          "assets": [
+            "./assets/images/tempMap.png"
+          ]
         }
-      ]
+      ],
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true

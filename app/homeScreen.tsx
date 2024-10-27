@@ -38,15 +38,24 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   listItem: {
-    backgroundColor: '#fd7801',
-    paddingLeft: 10,
+    backgroundColor: 'white',
+    paddingHorizontal: 15,
     paddingTop: 12,
     paddingBottom: 12,
     marginBottom: 3,
-    borderRadius: 4,
+  
+    shadowColor: '#000',
+    shadowOpacity: 1,
+    shadowRadius: 1,
+    elevation: 2,
+
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
   listItemText: {
-    color: 'white',
+    color: 'black',
     textAlign: 'center',
   },
   scrollView: {
@@ -119,10 +128,14 @@ export default function({navigation}) {
         )}
 
         <TouchableOpacity style={{
-          backgroundColor: 'green',
-          paddingHorizontal: 50,
-          paddingVertical: 15,
           marginTop: 100,
+          backgroundColor: '#fd7801',
+          paddingVertical: 15,
+          paddingHorizontal: 90,
+          marginBottom: 10,
+          borderRadius: 60,
+          borderWidth: 1,
+          borderColor: '#db7f2c',
         }} onPress={() => navigation.push('shoppingList')}>
           <Text style={{color: 'white', fontWeight: 'bold', fontSize: 20}}>Next</Text>
         </TouchableOpacity>
