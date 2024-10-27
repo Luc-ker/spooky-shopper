@@ -1,18 +1,17 @@
-import { useFonts } from 'expo-font';
 import React from 'react';
 import {Text, View, Image, ScrollView, StyleSheet, TouchableOpacity,} from 'react-native';
+    import { useFonts, YatraOne_400Regular } from '@expo-google-fonts/yatra-one'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-
 const App = ({navigation}) => {
-    const [loaded, error] = useFonts({
-        'Magnificent-Serif': require('../assets/fonts/mag.ttf'),
-      });
+    let [loaded] = useFonts({
+        YatraOne_400Regular
+    });
     
-      if (!loaded && !error) {
-        return null;
-      }
-    
+    if (!loaded) {
+    return null;
+    }
+
     return (
         <SafeAreaView style={styles.scrollView}>
             <View style={[styles.container]}>
@@ -49,8 +48,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 50,
         marginBottom: 10,
         borderRadius: 60,
-        borderWidth: 3,
-        borderColor: '#db7f2c',
+        borderWidth: 2,
+        borderColor: 'gray',
     },
     textButton: {
         fontWeight: 'bold',
@@ -62,9 +61,8 @@ const styles = StyleSheet.create({
         padding: 5,
         marginTop: 0,
         fontSize: 45,
-        fontFamily: "Magnificent-Serif",
+        fontFamily: "YatraOne_400Regular",
         paddingBottom: 70,
-        fontWeight: 'bold', 
         textAlign: 'center',
     },
     scrollView: {

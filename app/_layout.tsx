@@ -4,8 +4,7 @@ import homeScreen from './homeScreen'
 import shoppingList from './shoppingList'
 import calculatingScreen from './calculatingScreen'
 import mapScreen from './mapScreen'
-import { NavigationContainer } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const Stack = createNativeStackNavigator();
 
