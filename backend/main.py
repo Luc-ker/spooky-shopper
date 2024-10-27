@@ -152,11 +152,7 @@ def main():
         shrinked = [aisle.x//25, aisle.y//25, aisle.length//25, aisle.height//25]
         for x in range(shrinked[2]):
             for y in range(shrinked[3]):
-                if shrinked[2] < shrinked[3]:
-                    aisle_num = aisle.num*2+x-1
-                else:
-                    aisle_num = aisle.num*2+y-1
-                mapArray[x+shrinked[0]][shrinked[1]+y] = ShelfCell(aisle_num)
+                mapArray[x+shrinked[0]][shrinked[1]+y] = ShelfCell(aisle.num)
 
     list = [Item(x["item"], x["aisle"], x["row"], x["column"], x["price"]) for x in shopping_list]
     itemCells = []
@@ -175,9 +171,15 @@ def main():
     foods = []
     locations = []
     for cell in itemCells:
-        cell.item.printDetails()
-        foods.append(cell.item.food)
-        locations.append((cell.item.aisle*pixelSize+pixelSize//2, cell.item.column*pixelSize+pixelSize//2))
+        food = cell.item
+        food.printDetails()
+        print(cell.coords)
+        foods.append(food.food)
+        aisle = aisles[food.aisle-1]
+        if aisle.height > aisle.length:
+            locations.append((aisle.x+pixelSize//2, aisle.y+food.column*pixelSize+pixelSize//2))
+        else:
+            locations.append((aisle.x+food.column*pixelSize+pixelSize//2, aisle.y+pixelSize//2))
     print(locations)
 
     items_dic = dict(zip(foods, locations))

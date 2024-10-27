@@ -99,12 +99,12 @@ def shortestPythagoras(list, start=(0,0)):
             list.remove(item)
         return [item] + shortestPythagoras(list, newStart)
     
-# def write_array_to_file(array):
-#     with open("C:\\Users\\jlee4\\Documents\\shopping-list-sorter\\backend\\map.txt", "a") as f2:
-#         for x in array:
-#             for cell in x:
-#                 f2.write(f"{cell.return_self()}")
-#             f2.write("|\n")
+def write_array_to_file(array):
+    with open("C:\\Users\\jlee4\\Documents\\shopping-list-sorter\\backend\\map.txt", "a") as f2:
+        for x in array:
+            for cell in x:
+                f2.write(f"{cell.return_self()}")
+            f2.write("|\n")
 
 # def print_array(array):
 #     for x in array:
@@ -148,11 +148,9 @@ def main(list=list):
         shrinked = [aisle.x//25, aisle.y//25, aisle.length//25, aisle.height//25]
         for x in range(shrinked[2]):
             for y in range(shrinked[3]):
-                if shrinked[2] < shrinked[3]:
-                    aisle_num = aisle.num*2+x-1
-                else:
-                    aisle_num = aisle.num*2+y-1
-                mapArray[x+shrinked[0]][shrinked[1]+y] = ShelfCell(aisle_num)
+                mapArray[x+shrinked[0]][shrinked[1]+y] = ShelfCell(aisle.num)
+    
+    write_array_to_file(mapArray)
 
     list = [Item(x[0], x[1], x[3], x[4], x[5]) for x in list]
     itemCells = []
@@ -172,10 +170,15 @@ def main(list=list):
     foods = []
     locations = []
     for cell in itemCells:
-        cell.item.printDetails()
+        food = cell.item
+        food.printDetails()
         print(cell.coords)
-        foods.append(cell.item.food)
-        locations.append((cell.item.aisle*pixelSize+pixelSize//2, cell.item.column*pixelSize+pixelSize//2))
+        foods.append(food.food)
+        aisle = aisles[food.aisle-1]
+        if aisle.height > aisle.length:
+            locations.append((aisle.x+pixelSize//2, aisle.y+food.column*pixelSize+pixelSize//2))
+        else:
+            locations.append((aisle.x+food.column*pixelSize+pixelSize//2, aisle.y+pixelSize//2))
     print(locations)
     return foods, locations
 
