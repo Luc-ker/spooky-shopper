@@ -94,43 +94,17 @@ x_boxes = (findMaxWidth(aisles)//pixelSize) + 2
 y_boxes = (findMaxHeight(aisles)//pixelSize) + 2
 
 for x in range(x_boxes):
-    # mapArray.append(["0"]*y_boxes)
     mapArray.append([Cell()]*y_boxes) # aisle gets set later
 
 for aisle in aisles:
     shrinked = [aisle.x//25, aisle.y//25, aisle.length//25, aisle.height//25]
-    # print(shrinked)
     for x in range(shrinked[2]):
         for y in range(shrinked[3]):
-            # print(x+shrinked[0], shrinked[1]+y)
-            # mapArray[x+shrinked[0]][shrinked[1]+y] = "X"
             if shrinked[2] < shrinked[3]:
-                # print(aisle.num*2+x-1)
                 aisle_num = aisle.num*2+x-1
             else:
-                # print(aisle.num*2+y-1)
                 aisle_num = aisle.num*2+y-1
-            # print(aisle_num-1)
             mapArray[x+shrinked[0]][shrinked[1]+y] = ShelfCell(aisle_num)
-            # print(mapArray[x+shrinked[0]][shrinked[1]+y].state)
-            # print(mapArray[x+shrinked[0]][shrinked[1]+y].aisle)
-            # cell = mapArray[x+shrinked[0]][shrinked[1]+y]
-# write_array_to_file(mapArray)
-    # with open("C:\\Users\\jlee4\\Documents\\shopping-list-sorter\\backend\\map.txt", "a") as f2:
-    #     f2.write(str(aisle.num))
-    #     for i,x in enumerate(mapArray):
-    #         for y,cell in enumerate(x):
-    #             f2.write(f"| {cell.state} ")
-    #         f2.write(f"|\n")
-    #     for i in range(len(mapArray)-1, 0, -1):
-    #         f2.write(str(mapArray[i])+"\n")
-
-# with open("C:\\Users\\jlee4\\Documents\\shopping-list-sorter\\backend\\map.txt", "a") as f2:
-# for i,x in enumerate(mapArray):
-#     for y,cell in enumerate(x):
-        # f2.write(f"{i}, {y}, {cell.state}, {cell.aisle}\n")
-        # print(f"{i}, {y}, {cell.state}, {cell.aisle}")
-# print(mapArray)
 
 list = [
     ["Food","Flour",1.20,1,2,6],
@@ -157,20 +131,25 @@ for item in list:
                 coords.append((x,y))
     aisleCells[item.column-1] = aisleCells[item.column-1].set_item(item, coords[item.column-1])
     itemCells.append(aisleCells[item.column-1])
+    print(coords[item.column-1])
+
 
 def pythagCalc(coord1, coord2):
-    print(coord1, coord2)
+    # print(coord1, coord2)
+    # first number is vertical, second number is horizontal
     if coord1 == (0,0):
         distance = coord2[0] + coord2[1]
     elif (coord1[1] != coord2[1]):
-        distance = min([aisleLength-coord1[0], coord1[0]])
-        if distance == coord1 and distance == (aisleLength-coord1[0]):
-            distance += min([aisleLength-coord2[0], coord2[0]])
-        elif distance == coord1[0]:
-            distance += coord2[0]
-        else:
-            distance += aisleLength-coord2[0]
-        distance += abs(coord2[1]-coord1[1])
+        distance = abs(coord2[1]-coord1[1])
+        distance += abs(coord2[0]-coord1[0])
+        # distance = min([aisleLength-coord1[0], coord1[0]])
+        # if distance == coord1 and distance == (aisleLength-coord1[0]):
+        #     distance += min([aisleLength-coord2[0], coord2[0]])
+        # elif distance == coord1[0]:
+        #     distance += coord2[0]
+        # else:
+        #     distance += aisleLength-coord2[0]
+        # distance += abs(coord2[1]-coord1[1])
     elif (coord1[1] == coord2[1]):
         distance = abs(coord2[0]-coord1[0])
     return distance
@@ -189,7 +168,7 @@ def shortestPythagoras(list, start=(0,0)):
         item = None
         for i in list:
             distance = pythagCalc(start, i.coords)
-            print(distance)
+            # print(distance)
             if distance < lowest:
                 item = i
                 lowest = distance
