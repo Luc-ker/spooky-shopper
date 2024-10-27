@@ -24,10 +24,11 @@ const App = ({navigation}) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#4E3B2B',
+        flex: 1,
+        backgroundColor: '#2B1B00',
         padding: 24,
         margin: 'auto',
-        marginTop: 150,
+        marginTop: 200,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 8,
@@ -52,6 +53,7 @@ const styles = StyleSheet.create({
     header: {
         color: '#FFA303',
         padding: 5,
+        marginTop: 0,
         fontSize: 45,
         fontFamily: "Magnificent Serif",
         paddingBottom: 20,
@@ -59,6 +61,5 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
 });
-
 
 export default App;
